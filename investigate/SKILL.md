@@ -23,12 +23,12 @@ hooks:
     - matcher: "Edit"
       hooks:
         - type: command
-          command: 'bash -c ''S="${CLAUDE_SKILL_DIR}/../freeze/bin/check-freeze.sh"; [ -x "$S" ] || S="${CLAUDE_SKILL_DIR}/../gstack-freeze/bin/check-freeze.sh"; [ -x "$S" ] && bash "$S" || exit 0'''
+          command: 'bash -c ''R=$(git rev-parse --show-toplevel 2>/dev/null || pwd); for S in "$R/.claude/skills/gstack/freeze/bin/check-freeze.sh" "$HOME/.claude/skills/gstack/freeze/bin/check-freeze.sh"; do [ -x "$S" ] && exec bash "$S"; done; exit 0'''
           statusMessage: "Checking debug scope boundary..."
     - matcher: "Write"
       hooks:
         - type: command
-          command: 'bash -c ''S="${CLAUDE_SKILL_DIR}/../freeze/bin/check-freeze.sh"; [ -x "$S" ] || S="${CLAUDE_SKILL_DIR}/../gstack-freeze/bin/check-freeze.sh"; [ -x "$S" ] && bash "$S" || exit 0'''
+          command: 'bash -c ''R=$(git rev-parse --show-toplevel 2>/dev/null || pwd); for S in "$R/.claude/skills/gstack/freeze/bin/check-freeze.sh" "$HOME/.claude/skills/gstack/freeze/bin/check-freeze.sh"; do [ -x "$S" ] && exec bash "$S"; done; exit 0'''
           statusMessage: "Checking debug scope boundary..."
 gbrain:
   schema: 1

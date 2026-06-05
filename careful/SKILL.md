@@ -14,7 +14,7 @@ hooks:
     - matcher: "Bash"
       hooks:
         - type: command
-          command: "bash ${CLAUDE_SKILL_DIR}/bin/check-careful.sh"
+          command: 'bash -c ''R=$(git rev-parse --show-toplevel 2>/dev/null || pwd); for S in "$R/.claude/skills/gstack/careful/bin/check-careful.sh" "$HOME/.claude/skills/gstack/careful/bin/check-careful.sh"; do [ -x "$S" ] && exec bash "$S"; done; exit 0'''
           statusMessage: "Checking for destructive commands..."
 ---
 <!-- AUTO-GENERATED from SKILL.md.tmpl — do not edit directly -->
